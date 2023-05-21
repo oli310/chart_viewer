@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Folder Buttons</title>
+    <style>
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .button-container form {
+            margin-right: 10px;
+        }
+        .image-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-gap: 10px;
+            margin-top: 20px;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Folder Buttons</h1>
+    <div class="button-container">
+        {% for folder_name in folder_names %}
+            <form action="/show_images/{{ folder_name }}" method="get">
+                <button type="submit"{% if folder_name == selected_folder %} class="active"{% endif %}>{{ folder_name }}</button>
+            </form>
+        {% endfor %}
+    </div>
+    {% if selected_folder %}
+    <h2>Images in {{ selected_folder }}</h2>
+    <div class="image-container">
+        {% for image_file_name in image_file_names %}
+            <img src="{{ url_for('get_image', folder_name=selected_folder, image_file_name=image_file_name) }}" alt="{{ image_file_name }}">
+        {% endfor %}
+    </div>
+    {% endif %}
+</body>
+</html>
