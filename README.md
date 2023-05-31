@@ -26,5 +26,8 @@ This is a simple Flask application that displays a gallery of images from specif
 
 5. Open a web browser and go to http://localhost:5000 to access the application.
 
+Modifying the resolution of images (300px --> 450px):
+/templates/index.html 
+	15.   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); --> grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
 
 https://www.youtube.com/watch?v=uxZuFm5tmhM
